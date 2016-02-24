@@ -11,3 +11,10 @@ USER openwrt
 WORKDIR /home/openwrt
 RUN git clone git://git.openwrt.org/14.07/openwrt.git
 RUN openwrt/scripts/feeds update
+
+WORKDIR /home/openwrt/openwrt
+COPY vocore.config /tmp
+RUN cp /tmp/vocore.config .config
+RUN make defconfig
+RUN make toolchain
+
